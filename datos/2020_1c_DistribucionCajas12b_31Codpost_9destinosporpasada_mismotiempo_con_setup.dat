@@ -1,0 +1,23 @@
+/*********************************************
+ * OPL 12.7.1.0 Data
+ * Author: La catedra
+ * Creation Date: Aug 29, 2019 at 8:44:07 PM
+ *********************************************/
+
+COD_POST = {"A", "B", "C", "D", "E", "F", "G", "H", 
+			"I", "J", "K", "L", "M", "N", "O", "P",
+			"Q", "R", "S", "T", "U", "V", "W", "X",
+			"Y", "Z", "AA", "AB", "AC", "AD", "AE"}; 
+
+CAJAS = [ 	100, 	100, 	100, 	100, 	100, 	100, 	100,	100,
+			100, 	100, 	100, 	100, 	100, 	100, 	100, 	100,
+			100, 	100, 	100, 	100,	100, 	100, 	100, 	100,
+			100,	100, 	100, 	100, 	100, 	100,	100 ]; //Cajas por cod post
+
+DESTINOS_POR_PASADA = 9;
+
+TIEMPO_PROC_CAJA = 1; //Expresado en segundos
+
+TIEMPO_SETUP = 100; //Tiempo setup scanner> Expresado en segundos
+
+/*Output: tiempo 6000 seg con SETUP de 100*/
