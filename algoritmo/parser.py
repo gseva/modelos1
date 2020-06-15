@@ -25,7 +25,9 @@ def parse(filename):
             elif 'TIEMPO_SETUP = ' in statement:
                 t_setup = ast.literal_eval(statement.split('TIEMPO_SETUP = ')[-1])
             elif '/*Output:' in statement:
-                resultado = statement.split('\n')[-1]
+                for res in statement.split('\n'):
+                    if 'Output' in res:
+                        resultado = res
     return codigos, cajas, destinos, t_caja, t_setup, resultado
 
 
