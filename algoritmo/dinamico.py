@@ -1,5 +1,17 @@
+"""
+Código del algoritmo de fuerza bruta/dinámico.
+"""
 
 import sys
+
+# Cantidad máxima de códigos que puede procesar este algoritmo. Si la cantidad
+# de códigos es mayor a este valor, el algoritmo va a aplicar una heuristica
+# para separar los codigos en divisiones de igual tamaño para bajar la
+# complejidad, y luego va a seguir con su procesamiento. Esto es necesario
+# porque actualmente para el caso de 15 lotes el algoritmo no termina. Un valor
+# que hace que termine para todos los casos es 12, pero el resultado deja de
+# ser óptimo y es más parecido al resultado greedy.
+MAX_CODIGOS = 999
 
 # Algoritmo que devuelve todos los k-subsets posibles de un set de elementos
 # Agarrado de: https://codereview.stackexchange.com/questions/1526/finding-all-k-subset-partitions
@@ -50,7 +62,7 @@ def dinamico(codigos_postales, cajas, n_destinos, t_caja, t_setup):
         if len(lote) <= n_destinos:
             return t_actual
 
-        if len(lote) > 12:
+        if len(lote) > MAX_CODIGOS:
             # Heuristica para bajar la complejidad del algoritmo
             divisiones = [bucket_by_value(lote, n_destinos)]
         else:
