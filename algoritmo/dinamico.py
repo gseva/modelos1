@@ -49,14 +49,27 @@ def bucket_by_value(elements, k):
 
 def dinamico(codigos_postales, cajas, n_destinos, t_caja, t_setup):
     config_times = {}
+    subdivisiones_optimas = {}
 
     def posibles_divisiones(lote):
         return subsets_k(list(lote.keys()), n_destinos)
+
+    def obtener_secuencia_optima(inicial):
+        """
+        Calcula la secuencia óptima a hacer dado una separación inicial. Se
+        usa para mostrar el output
+        """
+        resultado = [subdivisiones_optimas[inicial]]
+        for subdiv in subdivisiones_optimas[inicial]:
+            if tuple(subdiv) in subdivisiones_optimas:
+                resultado.extend(obtener_secuencia_optima(tuple(subdiv)))
+        return resultado
 
     def calcular_tiempo(lote):
         return t_setup + sum(lote.values()) * t_caja
 
     def procesar_recursivo(lote):
+        """ recursivamente calcula el funcional óptimo para el problema dado """
         t_actual = calcular_tiempo(lote)
 
         if len(lote) <= n_destinos:
@@ -69,6 +82,7 @@ def dinamico(codigos_postales, cajas, n_destinos, t_caja, t_setup):
             divisiones = posibles_divisiones(lote)
 
         t_min = sys.maxsize  # Valor muy grande
+        division_optima = None
         for division in divisiones:
             t_division = 0
             for config in division:
@@ -80,6 +94,9 @@ def dinamico(codigos_postales, cajas, n_destinos, t_caja, t_setup):
                     t_division += config_times[tup_config]
             if t_division < t_min:
                 t_min = t_division
+                division_optima = division
+
+        subdivisiones_optimas[tuple(lote.keys())] = division_optima
         return t_actual + t_min
 
     primer_lote = dict(zip(codigos_postales, cajas))
@@ -88,4 +105,6 @@ def dinamico(codigos_postales, cajas, n_destinos, t_caja, t_setup):
         config_times[tuple(k)] = v
 
     primer_config = codigos_postales
-    return procesar_recursivo(primer_lote)
+    funcional = procesar_recursivo(primer_lote)
+    secuencia_optima = obtener_secuencia_optima(tuple(codigos_postales))
+    return funcional, secuencia_optima

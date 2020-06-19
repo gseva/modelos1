@@ -29,15 +29,19 @@ if __name__ == '__main__':
             start_time = time.time()
             sol = GreedySol(t_caja, t_setup)
             sol.run(list(zip(codigos, cajas)), destinos)
+            end_time = time.time() - start_time
             sol.results()
         elif algoritmo == 'dinamico':
             start_time = time.time()
-            resultado = dinamico(codigos, cajas, destinos, t_caja, t_setup)
-            print(resultado)
+            resultado, secuencia = dinamico(codigos, cajas, destinos, t_caja, t_setup)
+            end_time = time.time() - start_time
+            print('Funcional:', resultado)
+            print('Secuencia (excluyendo las triviales):')
+            for division in secuencia:
+                print(division)
         else:
             print('No existe el algoritmo', algoritmo)
             print('Opciones disponibles: greedy/dinamico')
             exit()
-        end_time = time.time() - start_time
         print('\n'+('***'*10))
         print('Tiempo de ejecución: {:.5f} segundos'.format(end_time, ))

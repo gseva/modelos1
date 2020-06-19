@@ -1,16 +1,22 @@
 # Trabajo práctico de Modelos y Optimización 1
 
 ## Parámetros
-El archivo ```py.run``` recibe los parámetros:
-- Ruta de dataset 
-- Algoritmo (greedy, dinamico). Default: greedy
+El archivo ```run.py``` recibe los parámetros:
+ - Ruta de dataset
+ - Algoritmo (greedy, dinamico). Default: greedy
+
+Ejemplo de ejecución:
+
+```bash
+python3 run.py archivo.dat greedy
+```
 
 ## Correr algoritmo Greedy
 
 Se corre para cada set de datos disponible:
 
 ```
-python3 algoritmo/run.py datos/2020_1c_DistribucionCajas01_3Codpost_2destinosporpasada_mismotiempo.dat 
+python3 algoritmo/run.py datos/2020_1c_DistribucionCajas01_3Codpost_2destinosporpasada_mismotiempo.dat
 python3 algoritmo/run.py datos/2020_1c_DistribucionCajas01b_3Codpost_2destinosporpasada_mismotiempo_con_setup.dat
 python3 algoritmo/run.py datos/2020_1c_DistribucionCajas02_4Codpost_2destinosporpasada_mismotiempo.dat
 python3 algoritmo/run.py datos/2020_1c_DistribucionCajas02b_4Codpost_2destinosporpasada_mismotiempo_con_setup.dat
