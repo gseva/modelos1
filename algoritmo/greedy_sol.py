@@ -84,8 +84,9 @@ class GreedySol():
 		print("{0}    Salidas={1}".format(indent_nivel, bucks_cps))
 
 	def results(self):
-		print(self.FUNCIONAL)
-		print(self.MATADO_X_RONDA)
+		print("---- RESULTADOS DE CORRIDA ----")
+		print("  Funcional =", self.FUNCIONAL)
+		print("  Matados por ronda =",self.MATADO_X_RONDA)
 
 
 
