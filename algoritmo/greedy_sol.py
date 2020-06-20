@@ -37,11 +37,12 @@ P_CJ = 1
 
 class GreedySol():
 
-	def __init__(self, tproc, tsetup):
+	def __init__(self, tproc, tsetup, debug_mode=True):
 		self.MATADO_X_RONDA = {}
 		self.FUNCIONAL = 0
 		self.tproc = tproc
 		self.tsetup = tsetup
+		self.debug = debug_mode
 
 
 	def run(self, cajas_cps, dests, nivel=0):
@@ -62,6 +63,9 @@ class GreedySol():
 
 		self.FUNCIONAL+=(cant_cajas_proc*self.tproc)					# Sumo el total de tiempo de procesamiento por cajas
 
+		if (self.debug):
+			self.step_printer(cajas_cps, buckets_dest, nivel)
+
 		ronda_i = []
 		for buck in buckets_dest:										# Por cada bucket, se ve su cantidad:
 			if len(buck) == 0: continue									# 	Si no tiene elementos, no hace nada
@@ -72,6 +76,12 @@ class GreedySol():
 
 		self.MATADO_X_RONDA[nivel].append(ronda_i)						# Añade subset de nivel
 
+	def step_printer(self, cajas_cps, buckets, nivel):
+		indent_nivel = " " * 6 * nivel
+		cps = [x[0] for x in cajas_cps] 
+		bucks_cps = [[y[0] for y in x] for x in buckets] 
+		print("{0}{1: >2}: Entrada={2}".format(indent_nivel, nivel, cps))
+		print("{0}    Salidas={1}".format(indent_nivel, bucks_cps))
 
 	def results(self):
 		print(self.FUNCIONAL)
